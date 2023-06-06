@@ -14,7 +14,10 @@ Run the script ``main.py``. It has the following required arguments:
 An example of launching the script would be:
 
 ```sh
-python main.py "data/cube/cube_0.0_rec.npy" "data/cube/cube_90.0_to_0.0_rec.npy" "-1 0 0" "0 0 1" "output.obj"
+python main.py \
+	"data/cube/cube_0.0_rec.npy" \ 
+	"data/cube/cube_90.0_to_0.0_rec.npy" \
+	"-1 0 0" "0 0 1" "output.obj"
 ```
 
 There's also the optional arguments:
