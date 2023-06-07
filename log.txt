@@ -6,3 +6,9 @@ Room radius: 4.0, Weight Normals: 1.0, Weight Values: 1.0
 Weight Proximity: 1.0, Weight Neighbours: 1.0
 Weight LODs: (1.0, 2.5, 2.0, 7.0)
 ---------------
+Center of Mass (SciPy): [-1.46660976 -0.01611929  0.22911572]
+Voxels Mu: [-1.31321568 -0.01610663  0.14293921]
+Voxels Sigma: [2.18369393 0.97052424 1.16734852]
+Time for blurring: 27.619582176208496s
+Time for optimising: 14.432383298873901s
+Time for optimising (Average per iteration): ~1.44323832988739s

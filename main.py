@@ -6,6 +6,8 @@ import data_loader
 import scipy.ndimage as ndi
 from scipy.ndimage import gaussian_filter
 
+import time
+
 import argparse
 
 #import pywavefront
@@ -90,8 +92,8 @@ def program(args, f=None):
 	centerStart = centerOfMass(V0, V1, args.roomsize)
 	mu, sigma = centerOfMassAndDeviation(V0, V1, args.roomsize)
 
-	print(f"Center of Mass: {centerStart}")
-	print(f"Voxels Mu: {mu}, Voxels Sigma: {sigma}")
+	log(f"Center of Mass (SciPy): {centerStart}", f)
+	log(f"Voxels Mu: {mu}\nVoxels Sigma: {sigma}", f)
 
 	if args.filltobounds:
 		p += mu.reshape(-1,1)
@@ -102,16 +104,23 @@ def program(args, f=None):
 	neighbours = subsphere_ico.neighbours_matrix(p, args.subdivisions)
 
 	print(f"Applying blur to volumes...")
+	t = time.time()
 	weight_lods=[args.weightlod0, args.weightlod1, args.weightlod2, args.weightlod3]
 	V0 = blurVolume(V0, weight_lods)
 	V1 = blurVolume(V1, weight_lods)
+	t = time.time() - t
+	log(f"Time for blurring: {t}s", f)
 
 	# Optimise
 	#po, no = opt.optimizeTest(p, n)
+	t = time.time()
 	po, no = opt.optimizeSphere(p, n, neighbours, V0, V1, Vn0, Vn1, room_length=args.roomsize,
 			save_lod_models=True, subdivisions=args.subdivisions, number_of_iterations=args.iterations,
 			weight_values=args.weightvalues, weight_normals=args.weightnormals, save_sequence=args.sequence,
 			force_cpu=args.cpu, weight_proximity=args.weightproximity, weight_neighbours=args.weightneighbours)
+	t = time.time() - t
+	log(f"Time for optimising: {t}s", f)
+	log(f"Time for optimising (Average per iteration): {t/args.iterations}s", f)
 
 	# Save Result
 	subsphere_ico.save_as_obj(po, args.subdivisions, args.output)
@@ -172,4 +181,4 @@ if __name__ == "__main__":
 		log(f"Saving sequence on directory '{args.sequence}'", f)
 	log("---------------", f)
 
-	program(args)
+	program(args, f)
