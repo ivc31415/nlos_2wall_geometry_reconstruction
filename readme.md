@@ -41,4 +41,5 @@ There's also the optional arguments:
 
 |Short form|Long form|Description|
 |-|-|-|
-|``-cpu``|``--cpu``|Flag, Forces script to use the CPU instead of GPU|
+|``-cpu``|``--cpu``|Forces script to use the CPU instead of GPU|
+|``-fb``|``--filltobounds``|Reshapes sphere before optimisation to size of standard deviation|

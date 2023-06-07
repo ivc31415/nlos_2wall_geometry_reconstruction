@@ -65,12 +65,16 @@ def program(args):
 	# Room length and center of mass
 	#room_length = 5 #Half the room size between adjacent corners.
 	centerStart = centerOfMass(V0, V1, args.roomsize)
-	p = p + centerStart[:, np.newaxis]
-
 	mu, sigma = centerOfMassAndDeviation(V0, V1, args.roomsize)
 
 	print(f"Center of Mass: {centerStart}")
-	print(f"Mu: {mu}, Sigma: {sigma}")
+	print(f"Voxels Mu: {mu}, Voxels Sigma: {sigma}")
+
+	if args.filltobounds:
+		p += mu.reshape(-1,1)
+		p *= sigma.reshape(-1,1)
+	else:
+		p = p + centerStart[:, np.newaxis]
 
 	neighbours = subsphere_ico.neighbours_matrix(p, args.subdivisions)
 
@@ -105,6 +109,7 @@ if __name__ == "__main__":
 	argp.add_argument('-i', '--iterations', default=10, type=int)
 	argp.add_argument('-s', '--subdivisions', default=1, type=int)
 	argp.add_argument('-r', '--roomsize', default=5, type=float)
+
 	argp.add_argument('-wlod0', '--weightlod0', default=1, type=float)
 	argp.add_argument('-wlod1', '--weightlod1', default=0.5, type=float)
 	argp.add_argument('-wlod2', '--weightlod2', default=0.25, type=float)
@@ -114,13 +119,15 @@ if __name__ == "__main__":
 	argp.add_argument('-wp', '--weightproximity', default=1, type=float)
 	argp.add_argument('-wneigh', '--weightneighbours', default=1, type=float)
 	argp.add_argument('-sq', '--sequence', default=None, type=str)
+
 	argp.add_argument('-cpu', '--cpu', action='store_true')
+	argp.add_argument('-fb', '--filltobounds', action='store_true')
 
 	args = argp.parse_args()
 
 	print(f"Volume 1: '{args.volume1}', Volume 2: '{args.volume2}'")
 	print(f"Normal 1: '{args.normal1}', Normal 2: '{args.normal2}'")
-	print(f"Output: '{args.output}', Force CPU?: {args.cpu}")
+	print(f"Output: '{args.output}', Force CPU?: {args.cpu}, Fill to bounds?: {args.filltobounds}")
 	print(f"Iterations: {args.iterations}, Subdivisions: {args.subdivisions}")
 	print(f"Room radius: {args.roomsize}, Weight Normals: {args.weightnormals}, Weight Values: {args.weightvalues}")
 	print(f"Weight Proximity: {args.weightproximity}, Weight Neighbours: {args.weightneighbours}")
