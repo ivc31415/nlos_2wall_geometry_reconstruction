@@ -69,7 +69,7 @@ def blurVolume(V_LOD0, weight_lods):
 	V_LOD3 /= np.max(V_LOD3)
 
 	V = weight_lods[0] * V_LOD0 + weight_lods[1] * V_LOD1 + weight_lods[2] * V_LOD2 + weight_lods[3] * V_LOD3
-	V /= weight_lods[1] + weight_lods[1] + weight_lods[1] + weight_lods[1]
+	V /= weight_lods[0] + weight_lods[1] + weight_lods[2] + weight_lods[3]
 
 	return V
 
@@ -136,9 +136,8 @@ def program(args, f=None):
 		f.close()
 
 	# Plot
-	#obj_render_scene = pywavefront.Wavefront(output_path)
-	#visualization.draw(obj_render_scene)
-	plotModel(po, no, args.roomsize)
+	if f is None:
+		plotModel(po, no, args.roomsize)
 
 
 if __name__ == "__main__":
