@@ -37,7 +37,7 @@ def plotSamplingFunction(V, room_length, k=127):
 	plt.imshow(im, cmap='hot', interpolation='nearest')
 	plt.show()
 
-def optimizeSphere(input_x, input_n, input_neighbours, V0_LOD0, V1_LOD0, input_Vn0, input_Vn1, room_length = 5.0, weight_lods = [1, 0.25, 0.1, 0.05], weight_normals = 1, weight_proximity = 1, weight_neighbours = 1, number_of_iterations = 100, save_lod_models=False, subdivisions=1, save_sequence=None, force_cpu = False):
+def optimizeSphere(input_x, input_n, input_neighbours, V0_LOD0, V1_LOD0, input_Vn0, input_Vn1, room_length = 5.0, weight_lods = [1, 0.25, 0.1, 0.05], weight_values = 1, weight_normals = 1, weight_proximity = 1, weight_neighbours = 1, number_of_iterations = 100, save_lod_models=False, subdivisions=1, save_sequence=None, force_cpu = False):
 	global samplingPosition
 
 	res = V0_LOD0.shape[0]
@@ -81,7 +81,7 @@ def optimizeSphere(input_x, input_n, input_neighbours, V0_LOD0, V1_LOD0, input_V
 
 	print(f"Optimising sphere to voxel data for {number_of_iterations} iterations:")
 	for i in tqdm(range(number_of_iterations)):
-		res = opt.minimize(powerSphere, [x], args=(dev, n, neighbours, V0, V1, Vn0, Vn1, room_length, weight_lods, weight_normals, weight_proximity, weight_neighbours), method='CG',
+		res = opt.minimize(powerSphere, [x], args=(dev, n, neighbours, V0, V1, Vn0, Vn1, room_length, weight_lods, weight_values, weight_normals, weight_proximity, weight_neighbours), method='CG',
 			options={'disp': False, "maxiter": 1}, jac='3-point') #jac=jac_function
 		x = unpack(res.x)
 		if save_sequence is not None:
@@ -89,7 +89,7 @@ def optimizeSphere(input_x, input_n, input_neighbours, V0_LOD0, V1_LOD0, input_V
 
 	return x, n
 
-def powerSphere(data, device, n, neighbours, V0, V1, Vn0, Vn1, room_length, weights_lods, weight_normals, weight_proximity, weight_neighbours):
+def powerSphere(data, device, n, neighbours, V0, V1, Vn0, Vn1, room_length, weights_lods, weight_values, weight_normals, weight_proximity, weight_neighbours):
 	x = unpack(data)
 	x_torch = torch.from_numpy(x.T).to(device)
 
@@ -122,7 +122,7 @@ def powerSphere(data, device, n, neighbours, V0, V1, Vn0, Vn1, room_length, weig
 	eNeighbours = torch.sum(neighbour_dist_stdev)
 	eNeighbours = eNeighbours.item()
 
-	return -(eValue + weight_normals * eNormal + weight_proximity * eProximity + weight_neighbours * eNeighbours)
+	return -(weight_values * eValue + weight_normals * eNormal + weight_proximity * eProximity + weight_neighbours * eNeighbours)
 
 def sampleVolume(V, x, room_length):
 	global samplingPosition

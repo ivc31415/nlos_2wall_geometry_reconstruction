@@ -79,7 +79,7 @@ def program(args):
 	po, no = opt.optimizeSphere(p, n, neighbours, V0, V1, Vn0, Vn1, room_length=args.roomsize,
 			save_lod_models=True, subdivisions=args.subdivisions, number_of_iterations=args.iterations,
 			weight_lods=[args.weightlod0, args.weightlod1, args.weightlod2, args.weightlod3], 
-			weight_normals=args.weightnormals, save_sequence=args.sequence,
+			weight_values=args.weightvalues, weight_normals=args.weightnormals, save_sequence=args.sequence,
 			force_cpu=args.cpu, weight_proximity=args.weightproximity, weight_neighbours=args.weightneighbours)
 
 	# Save Result
@@ -109,6 +109,7 @@ if __name__ == "__main__":
 	argp.add_argument('-wlod1', '--weightlod1', default=0.5, type=float)
 	argp.add_argument('-wlod2', '--weightlod2', default=0.25, type=float)
 	argp.add_argument('-wlod3', '--weightlod3', default=0.1, type=float)
+	argp.add_argument('-wv', '--weightvalues', default=1, type=float)
 	argp.add_argument('-wn', '--weightnormals', default=1, type=float)
 	argp.add_argument('-wp', '--weightproximity', default=1, type=float)
 	argp.add_argument('-wneigh', '--weightneighbours', default=1, type=float)
@@ -121,7 +122,7 @@ if __name__ == "__main__":
 	print(f"Normal 1: '{args.normal1}', Normal 2: '{args.normal2}'")
 	print(f"Output: '{args.output}', Force CPU?: {args.cpu}")
 	print(f"Iterations: {args.iterations}, Subdivisions: {args.subdivisions}")
-	print(f"Room radius: {args.roomsize}, Weight Normals: {args.weightnormals}")
+	print(f"Room radius: {args.roomsize}, Weight Normals: {args.weightnormals}, Weight Values: {args.weightvalues}")
 	print(f"Weight Proximity: {args.weightproximity}, Weight Neighbours: {args.weightneighbours}")
 	print(f"Weight LODs: ({args.weightlod0}, {args.weightlod1}, {args.weightlod2}, {args.weightlod3})")
 	if args.sequence is not None:

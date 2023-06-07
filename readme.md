@@ -1,4 +1,4 @@
-*Written for the state of the program in **3/6/2023***
+*Written for the state of the program in **7/6/2023***
 
 # How to run
 Run the script ``main.py``. It has the following required arguments:
@@ -28,8 +28,10 @@ There's also the optional arguments:
 |``-wlod1``|``--weightlod1``|Weight given to the least blurry version of the volumes|``0.5``|
 |``-wlod2``|``--weightlod2``|Weight given to the medium blurry version of the volumes|``0.25``|
 |``-wlod3``|``--weightlod3``|Weight given to the high blurry version of the volumes|``0.1``|
+|``-wv``|``-weightvalues``|Weight given to the value factor on the energy function|``1``|
 |``-wn``|``--weightnormals``|Weight given to the normals factor on the energy function|``1``|
 |``-wp``|``--weightproximity``|Weight given to the proximity factor on the energy function|``1``|
+|``-wneigh``|``--weightneighbours``|Weight given to the neighbours factor on the energy function|``1``|
 |``-sq``|``--sequence``|Path where a sequence of ``obj`` files are saved for every iteration|*None*|
 
 ...and flags:
