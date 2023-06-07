@@ -6,6 +6,8 @@ import data_loader
 import scipy.ndimage as ndi
 from scipy.ndimage import gaussian_filter
 
+import torch
+
 import time
 
 import argparse
@@ -73,22 +75,21 @@ def blurVolume(V_LOD0, weight_lods):
 
 def program(args, f=None):
 	# Obtain Base Sphere
-	#subdivisions = 1
 	p = subsphere_ico.generate_points(args.subdivisions)
 	n = p.copy()
 
 	# Load 2-view data
-	# V0 = data_loader.load("data/R_wall/wall_R_0.0_rec.npy")
-	# V1 = data_loader.load("data/R_wall/wall_R_90.0_to_0.0_rec.npy")
+	t = time.time()
 	V0 = data_loader.load(args.volume1)
 	V1 = data_loader.load(args.volume2)
+	t = time.time() - t
+	log(f"Time to load volumes: {t}s", f)
+
+	# Read normals
 	Vn0 = np.fromstring(args.normal1, dtype='float64', sep=' ')
 	Vn1 = np.fromstring(args.normal2, dtype='float64', sep=' ')
-	#Vn0 = np.array([[-1], [0], [0]])
-	#Vn1 = np.array([[0], [0], [1]])
 
 	# Room length and center of mass
-	#room_length = 5 #Half the room size between adjacent corners.
 	centerStart = centerOfMass(V0, V1, args.roomsize)
 	mu, sigma = centerOfMassAndDeviation(V0, V1, args.roomsize)
 
@@ -102,6 +103,12 @@ def program(args, f=None):
 		p = p + centerStart[:, np.newaxis]
 
 	neighbours = subsphere_ico.neighbours_matrix(p, args.subdivisions)
+
+	# Log GPU usage
+	if torch.cuda.is_available() and not args.cpu:
+		log(f"Using GPU", f)
+	else:
+		log(f"Using CPU", f)
 
 	print(f"Applying blur to volumes...")
 	t = time.time()
