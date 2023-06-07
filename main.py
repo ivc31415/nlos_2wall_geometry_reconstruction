@@ -4,6 +4,7 @@ import numpy as np
 import optimisation as opt
 import data_loader
 import scipy.ndimage as ndi
+from scipy.ndimage import gaussian_filter
 
 import argparse
 
@@ -11,6 +12,13 @@ import argparse
 #from pywavefront import visualization
 
 #import tal
+
+def log(message, file):
+	if f is None:
+		print(message)
+	else:
+		file.write(f"{message}\n")
+		file.flush()
 
 def plotModel(p, n, room_length, title='Reconstructed Model', showID=False):
 	fig = plt.figure(title)
@@ -46,7 +54,22 @@ def centerOfMassAndDeviation(V0, V1, room_length):
 
 	return mu, sigma
 
-def program(args):
+def blurVolume(V_LOD0, weight_lods):
+	V_LOD1 = gaussian_filter(V_LOD0, 4, mode='nearest')
+	V_LOD2 = gaussian_filter(V_LOD0, 32, mode='nearest')
+	V_LOD3 = gaussian_filter(V_LOD0, 64, mode='nearest')
+	
+	V_LOD0 /= np.max(V_LOD0)
+	V_LOD1 /= np.max(V_LOD1)
+	V_LOD2 /= np.max(V_LOD2)
+	V_LOD3 /= np.max(V_LOD3)
+
+	V = weight_lods[0] * V_LOD0 + weight_lods[1] * V_LOD1 + weight_lods[2] * V_LOD2 + weight_lods[3] * V_LOD3
+	V /= weight_lods[1] + weight_lods[1] + weight_lods[1] + weight_lods[1]
+
+	return V
+
+def program(args, f=None):
 	# Obtain Base Sphere
 	#subdivisions = 1
 	p = subsphere_ico.generate_points(args.subdivisions)
@@ -78,16 +101,23 @@ def program(args):
 
 	neighbours = subsphere_ico.neighbours_matrix(p, args.subdivisions)
 
+	print(f"Applying blur to volumes...")
+	weight_lods=[args.weightlod0, args.weightlod1, args.weightlod2, args.weightlod3]
+	V0 = blurVolume(V0, weight_lods)
+	V1 = blurVolume(V1, weight_lods)
+
 	# Optimise
 	#po, no = opt.optimizeTest(p, n)
 	po, no = opt.optimizeSphere(p, n, neighbours, V0, V1, Vn0, Vn1, room_length=args.roomsize,
 			save_lod_models=True, subdivisions=args.subdivisions, number_of_iterations=args.iterations,
-			weight_lods=[args.weightlod0, args.weightlod1, args.weightlod2, args.weightlod3], 
 			weight_values=args.weightvalues, weight_normals=args.weightnormals, save_sequence=args.sequence,
 			force_cpu=args.cpu, weight_proximity=args.weightproximity, weight_neighbours=args.weightneighbours)
 
 	# Save Result
 	subsphere_ico.save_as_obj(po, args.subdivisions, args.output)
+
+	if f is not None:
+		f.close()
 
 	# Plot
 	#obj_render_scene = pywavefront.Wavefront(output_path)
@@ -110,6 +140,8 @@ if __name__ == "__main__":
 	argp.add_argument('-s', '--subdivisions', default=1, type=int)
 	argp.add_argument('-r', '--roomsize', default=5, type=float)
 
+	argp.add_argument('-log', '--log', default=None, type=str)
+
 	argp.add_argument('-wlod0', '--weightlod0', default=1, type=float)
 	argp.add_argument('-wlod1', '--weightlod1', default=0.5, type=float)
 	argp.add_argument('-wlod2', '--weightlod2', default=0.25, type=float)
@@ -125,15 +157,19 @@ if __name__ == "__main__":
 
 	args = argp.parse_args()
 
-	print(f"Volume 1: '{args.volume1}', Volume 2: '{args.volume2}'")
-	print(f"Normal 1: '{args.normal1}', Normal 2: '{args.normal2}'")
-	print(f"Output: '{args.output}', Force CPU?: {args.cpu}, Fill to bounds?: {args.filltobounds}")
-	print(f"Iterations: {args.iterations}, Subdivisions: {args.subdivisions}")
-	print(f"Room radius: {args.roomsize}, Weight Normals: {args.weightnormals}, Weight Values: {args.weightvalues}")
-	print(f"Weight Proximity: {args.weightproximity}, Weight Neighbours: {args.weightneighbours}")
-	print(f"Weight LODs: ({args.weightlod0}, {args.weightlod1}, {args.weightlod2}, {args.weightlod3})")
+	f = None
+	if args.log is not None:
+		f = open(args.log, 'w')
+
+	log(f"Volume 1: '{args.volume1}', Volume 2: '{args.volume2}'", f)
+	log(f"Normal 1: '{args.normal1}', Normal 2: '{args.normal2}'", f)
+	log(f"Output: '{args.output}', Force CPU?: {args.cpu}, Fill to bounds?: {args.filltobounds}", f)
+	log(f"Iterations: {args.iterations}, Subdivisions: {args.subdivisions}", f)
+	log(f"Room radius: {args.roomsize}, Weight Normals: {args.weightnormals}, Weight Values: {args.weightvalues}", f)
+	log(f"Weight Proximity: {args.weightproximity}, Weight Neighbours: {args.weightneighbours}", f)
+	log(f"Weight LODs: ({args.weightlod0}, {args.weightlod1}, {args.weightlod2}, {args.weightlod3})", f)
 	if args.sequence is not None:
-		print(f"Saving sequence on directory '{args.sequence}'")
-	print("---------------")
+		log(f"Saving sequence on directory '{args.sequence}'", f)
+	log("---------------", f)
 
 	program(args)

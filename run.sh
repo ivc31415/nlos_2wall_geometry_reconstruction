@@ -7,7 +7,7 @@
 #python main.py "data/cube/0.0_rec.npy" "data/cube/90.0_to_0.0_rec.npy" "-1 0 0" "0 0 1" "output/output_1.7_barycenter_multiplier.obj" -i 20 --roomsize 6 -wlod0 1 -wlod1 2.5 -wlod2 0 -wlod3 7 -wn 2 -wp 0
 
 # Slightly better from x1
-python main.py "data/cube/0.0_rec.npy" "data/cube/90.0_to_0.0_rec.npy" "-1 0 0" "0 0 1" "output/TEMP.obj" -i 10 --roomsize 4 -wlod0 1 -wlod1 2.5 -wlod2 4.5 -wlod3 7 -wv 1 -wn 1 -wp 1 -wneigh 2 -s 2
+python main.py "data/cube/0.0_rec.npy" "data/cube/90.0_to_0.0_rec.npy" "-1 0 0" "0 0 1" "output/TEMP.obj" -i 10 --roomsize 4 -wlod0 1 -wlod1 2.5 -wlod2 2 -wlod3 7 -wv 1 -wn 1 -wp 1 -wneigh 1 -s 2 -log log.txt
 
 #python main.py "data/R_wall/wall_R_0.0_rec.npy" "data/R_wall/wall_R_90.0_to_0.0_rec.npy" "-1 0 0" "0 0 1" "output/R_wall.obj" -i 10 --roomsize 6 -wlod0 1 -wlod1 2.5 -wlod2 2 -wlod3 7 -wn 2 -s 2 -wp 0
 #python main.py "data/wall_cozy_chair/wall_cozy_chair_0.0_rec.npy" "data/wall_cozy_chair/wall_cozy_chair_90.0_to_0.0_rec.npy" "-1 0 0" "0 0 1" "output/TEMP.obj" -i 20 --roomsize 2 -wlod0 1 -wlod1 2.5 -wlod2 2 -wlod3 7 -wn 0 -s 2 -wp 0

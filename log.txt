@@ -1,0 +1,8 @@
+Volume 1: 'data/cube/0.0_rec.npy', Volume 2: 'data/cube/90.0_to_0.0_rec.npy'
+Normal 1: '-1 0 0', Normal 2: '0 0 1'
+Output: 'output/TEMP.obj', Force CPU?: False, Fill to bounds?: False
+Iterations: 10, Subdivisions: 2
+Room radius: 4.0, Weight Normals: 1.0, Weight Values: 1.0
+Weight Proximity: 1.0, Weight Neighbours: 1.0
+Weight LODs: (1.0, 2.5, 2.0, 7.0)
+---------------

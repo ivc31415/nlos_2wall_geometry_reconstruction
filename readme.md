@@ -27,6 +27,7 @@ There's also the optional arguments:
 |``-i``|``--iterations``|Integer, Number of iterations of optimisation|``10``|
 |``-s``|``--subdivisions``|Integer, number of subdivisions done to the sphere, starting at 1|``1``|
 |``-r``|``--roomsize``|Size of the volumes where a unit-radius sphere will be placed for optimisation|``5 ``|
+|``-log``|``-log``|File path for a log of the program's execution|*None*|
 |``-wlod0``|``--weightlod0``|Weight given to the no blurry version of the volumes|``1``|
 |``-wlod1``|``--weightlod1``|Weight given to the least blurry version of the volumes|``0.5``|
 |``-wlod2``|``--weightlod2``|Weight given to the medium blurry version of the volumes|``0.25``|
