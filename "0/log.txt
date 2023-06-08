@@ -1,0 +1,9 @@
+Volume 1: '"data/R/R_0.0_rec.npy', Volume 2: '-1 0 0'
+Normal 1: 'data/R/R_90.0_to_0.0_rec.npy"', Normal 2: '"0/final.obj'
+Output: '0', Force CPU?: False, Fill to bounds?: False
+Iterations: 10, Subdivisions: 1
+Room radius: 5, Weight Normals: 1, Weight Values: 1
+Weight Proximity: 1, Weight Neighbours: 1
+Weight LODs: (1, 0.5, 0.25, 0.1)
+Saving sequence on directory '"0/sequence'
+---------------
