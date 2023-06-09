@@ -154,6 +154,8 @@ if __name__ == "__main__":
 
 	argp.add_argument('-log', '--log', default=None, type=str)
 
+	argp.add_argument('-wv0', '--weightvolume0', default=1, type=float)
+	argp.add_argument('-wv1', '--weightvolume1', default=1, type=float)
 	argp.add_argument('-wlod0', '--weightlod0', default=1, type=float)
 	argp.add_argument('-wlod1', '--weightlod1', default=0.5, type=float)
 	argp.add_argument('-wlod2', '--weightlod2', default=0.25, type=float)
