@@ -121,10 +121,7 @@ def program(args, f=None):
 	# Optimise
 	#po, no = opt.optimizeTest(p, n)
 	t = time.time()
-	po, no = opt.optimizeSphere(p, n, neighbours, V0, V1, Vn0, Vn1, room_length=args.roomsize,
-			save_lod_models=True, subdivisions=args.subdivisions, number_of_iterations=args.iterations,
-			weight_values=args.weightvalues, weight_normals=args.weightnormals, save_sequence=args.sequence,
-			force_cpu=args.cpu, weight_proximity=args.weightproximity, weight_neighbours=args.weightneighbours)
+	po, no = opt.optimizeSphere(p, n, neighbours, V0, V1, Vn0, Vn1, args)
 	t = time.time() - t
 	log(f"Time for optimising: {t}s", f)
 	log(f"Time for optimising (Average per iteration): {t/args.iterations}s", f)
