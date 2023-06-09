@@ -6,15 +6,16 @@ function run_test () {
 	
 	mkdir -p "$3"
 	mkdir -p "$3/sequence"
+	echo python main.py $1 \"-1 0 0\" "$2" $3/final.obj -sq \"$3/sequence\" -log \"$3/log.txt\" $4
 	python main.py $1 "-1 0 0" "$2" $3/final.obj -sq "$3/sequence" -log "$3/log.txt" $4
 }
 
-declare -a FolderNames=("bunny" "R_wall" "wall_cozy_chair" "wall_bunny" "R")
-declare -a FileNames=("bunny_" "wall_R_" "wall_cozy_chair_" "wall_bunny_" "R_")
-declare -a Angles=("90.0" "90.0" "90.0" "90.0" "90.0")
-declare -a Normals=("0 0 1" "0 0 1" "0 0 1" "0 0 1" "0 0 1")
+declare -a FolderNames=("R_wall")
+declare -a FileNames=("wall_R_")
+declare -a Angles=("90.0" "90.0" "90.0")
+declare -a Normals=("0 0 1" "0 0 1" "0 0 1")
 
-for i in {1..4}; do
+for i in {0..0}; do
 	_folder="${FolderNames[$i]}"
 	_files="${FileNames[$i]}"
 	_angle="${Angles[$i]}"
@@ -58,7 +59,7 @@ for i in {1..4}; do
 	run_test "$file1 $file2" "$_normal" "$output/neighbours/1" "-i 10 --roomsize 4 -wlod0 4 -wlod1 3 -wlod2 2 -wlod3 1 -wv 1 -wn 1 -wp 0 -wneigh 1 -s 3"
 	run_test "$file1 $file2" "$_normal" "$output/neighbours/1.25" "-i 10 --roomsize 4 -wlod0 4 -wlod1 3 -wlod2 2 -wlod3 1 -wv 1 -wn 1 -wp 0 -wneigh 1.25 -s 3"
 	run_test "$file1 $file2" "$_normal" "$output/neighbours/1.5" "-i 10 --roomsize 4 -wlod0 4 -wlod1 3 -wlod2 2 -wlod3 1 -wv 1 -wn 1 -wp 0 -wneigh 1.5 -s 3"
-	#run_test "$file1 $file2" "$_normal" "$output/neighbours/2" "-i 10 --roomsize 4 -wlod0 4 -wlod1 3 -wlod2 2 -wlod3 1 -wv 1 -wn 1 -wp 0 -wneigh 2 -s 3"
+	run_test "$file1 $file2" "$_normal" "$output/neighbours/2" "-i 10 --roomsize 4 -wlod0 4 -wlod1 3 -wlod2 2 -wlod3 1 -wv 1 -wn 1 -wp 0 -wneigh 2 -s 3"
 	run_test "$file1 $file2" "$_normal" "$output/neighbours/5" "-i 10 --roomsize 4 -wlod0 4 -wlod1 3 -wlod2 2 -wlod3 1 -wv 1 -wn 1 -wp 0 -wneigh 5 -s 3"
 	run_test "$file1 $file2" "$_normal" "$output/neighbours/10" "-i 10 --roomsize 4 -wlod0 4 -wlod1 3 -wlod2 2 -wlod3 1 -wv 1 -wn 1 -wp 0 -wneigh 10 -s 3"
 

@@ -17,3 +17,6 @@
 - [ ] Pass every parameter inside dictionary instead of each one separately
 - [ ] Switch repository to ivc account
 - [X] Make 256 resolution depend on input
+
+## Discoveries
+- V0 (Far plane) is overpowered by V1 (Close plane)
