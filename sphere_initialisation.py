@@ -1,25 +1,50 @@
 import numpy as np
 import torch
+import optimisation
 
 import scipy.ndimage as ndi
+
+#
+# Initialise sphere
+#
 
 def initialise_standard(p, V0, V1, room_length):
 	barycenter = centerOfMass(V0, V1, room_length)
 	print(f"Initialising sphere with center of mass {barycenter}")
 	
-	p += barycenter[:, np.newaxis]
+	return p + barycenter[:, np.newaxis]
 
 def initialise_stdev(p, V0, V1, room_length):
 	mu, sigma = centerOfMassAndDeviation(V0, V1, room_length)
 	print(f"Initialising sphere with center of mass {mu} and std dev {sigma}")
 
-	p += mu.reshape(-1,1)
-	p *= sigma.reshape(-1,1)
+	#p += mu.reshape(-1,1)
+	#p *= sigma.reshape(-1,1)
+	return (p + mu.reshape(-1, 1)) * sigma.reshape(-1, 1)
 
-def initialise_raymarching(p, V0, V1, room_length):
+def initialise_raymarching(p, V0, V1, room_length, march_divisions=16):
 	mu, _ = centerOfMassAndDeviation(V0, V1, room_length)
 
+	dmax = room_length * 2 #Maximum possible distance between point and max volume value
+	V = V0 + V1
 
+	delta = np.tile(dmax * np.linspace(0, 1, march_divisions)**2, p.shape[1])
+	raymarched_points = np.repeat(p, march_divisions, axis=1)
+	raymarched_points *= delta
+	raymarched_points += mu.reshape(-1,1)
+
+	# Values for every point in the raymarching. Rows indicate point, column raymarched interation
+	values = optimisation.sampleVolume(V, raymarched_points, room_length).reshape(-1, march_divisions)
+
+	best_delta = dmax * (np.argmax(values, axis=1) / (march_divisions - 1))**2
+	best_delta = np.where(best_delta == 0, 1, best_delta)
+	best_positions = (p * best_delta) + mu.reshape(-1,1)
+
+	return best_positions
+
+#
+# Calculate center of mass
+#
 
 def centerOfMass(V0, V1, room_length):
 	c0 = np.asarray(ndi.center_of_mass(V0))

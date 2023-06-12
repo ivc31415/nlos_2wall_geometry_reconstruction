@@ -70,10 +70,14 @@ def program(args, f=None):
 	Vn1 = np.fromstring(args.normal2, dtype='float64', sep=' ')
 
 	# Initialise sphere position and size
-	if args.filltobounds:
-		si.initialise_stdev(p, V0, V1, args.roomsize)
+	if args.raymarching:
+		p = si.initialise_raymarching(p, V0, V1, args.roomsize)
+	elif args.filltobounds:
+		p = si.initialise_stdev(p, V0, V1, args.roomsize)
 	else:
-		si.initialise_standard(p, V0, V1, args.roomsize)
+		p = si.initialise_standard(p, V0, V1, args.roomsize)
+
+	plotModel(p, n, args.roomsize)
 
 	# Obtain neighbours
 	neighbours = subsphere_ico.neighbours_matrix(p, args.subdivisions)
@@ -142,6 +146,7 @@ if __name__ == "__main__":
 
 	argp.add_argument('-cpu', '--cpu', action='store_true')
 	argp.add_argument('-fb', '--filltobounds', action='store_true')
+	argp.add_argument('-rm', '--raymarching', action='store_true')
 
 	args = argp.parse_args()
 
@@ -151,11 +156,19 @@ if __name__ == "__main__":
 
 	log(f"Volume 1: '{args.volume1}', Volume 2: '{args.volume2}'", f)
 	log(f"Normal 1: '{args.normal1}', Normal 2: '{args.normal2}'", f)
-	log(f"Output: '{args.output}', Force CPU?: {args.cpu}, Fill to bounds?: {args.filltobounds}", f)
+	log(f"Output: '{args.output}', Force CPU?: {args.cpu}", f)
 	log(f"Iterations: {args.iterations}, Subdivisions: {args.subdivisions}", f)
 	log(f"Room radius: {args.roomsize}, Weight Normals: {args.weightnormals}, Weight Values: {args.weightvalues}", f)
 	log(f"Weight Proximity: {args.weightproximity}, Weight Neighbours: {args.weightneighbours}", f)
 	log(f"Weight LODs: ({args.weightlod0}, {args.weightlod1}, {args.weightlod2}, {args.weightlod3})", f)
+
+	if args.filltobounds:
+		log(f"Initialisation: Center of Mass + Standard Deviation", f)
+	elif args.raymarching:
+		log(f"Initialisation: Raymarching", f)
+	else:
+		log(f"Initialisation: Center of Mass", f)
+
 	if args.sequence is not None:
 		log(f"Saving sequence on directory '{args.sequence}'", f)
 	log("---------------", f)
