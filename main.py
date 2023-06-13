@@ -77,8 +77,6 @@ def program(args, f=None):
 	else:
 		p = si.initialise_standard(p, V0, V1, args.roomsize)
 
-	plotModel(p, n, args.roomsize)
-
 	# Obtain neighbours
 	neighbours = subsphere_ico.neighbours_matrix(p, args.subdivisions)
 

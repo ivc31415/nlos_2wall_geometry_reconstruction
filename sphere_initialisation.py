@@ -34,10 +34,13 @@ def initialise_raymarching(p, V0, V1, room_length, march_divisions=16):
 	raymarched_points += mu.reshape(-1,1)
 
 	# Values for every point in the raymarching. Rows indicate point, column raymarched interation
-	values = optimisation.sampleVolume(V, raymarched_points, room_length).reshape(-1, march_divisions)
+	values = optimisation.sampleVolume(V, raymarched_points, room_length)
+	values *= (1-delta/dmax) * (1-delta/dmax) # Give less importance to values far from the center
+	values = values.reshape(-1, march_divisions)
 
 	best_delta = dmax * (np.argmax(values, axis=1) / (march_divisions - 1))**2
-	best_delta = np.where(best_delta == 0, 1, best_delta)
+	best_delta_avg = np.sum(best_delta) / np.count_nonzero(best_delta)
+	best_delta = np.where(best_delta == 0, 1, best_delta) #Make sure marched rays that don't detect any volume value don't stay at the very center
 	best_positions = (p * best_delta) + mu.reshape(-1,1)
 
 	return best_positions
