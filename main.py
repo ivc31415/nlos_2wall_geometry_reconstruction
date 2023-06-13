@@ -115,7 +115,7 @@ def program(args, f=None):
 
 	# Plot
 	if f is None:
-		plotModel(po, no, args.roomsize)
+		plotModel([po], no, args.roomsize)
 
 
 if __name__ == "__main__":
