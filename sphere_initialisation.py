@@ -22,7 +22,7 @@ def initialise_stdev(p, V0, V1, room_length):
 	#p *= sigma.reshape(-1,1)
 	return (p + mu.reshape(-1, 1)) * sigma.reshape(-1, 1)
 
-def initialise_raymarching(p, V0, V1, room_length, march_divisions=16):
+def initialise_raymarching(p, V0, V1, room_length, march_divisions=32):
 	mu, _ = centerOfMassAndDeviation(V0, V1, room_length)
 
 	dmax = room_length * 2 #Maximum possible distance between point and max volume value
@@ -40,8 +40,8 @@ def initialise_raymarching(p, V0, V1, room_length, march_divisions=16):
 
 	best_delta = dmax * (np.argmax(values, axis=1) / (march_divisions - 1))**2
 	best_delta_avg = np.sum(best_delta) / np.count_nonzero(best_delta)
-	best_delta = np.where(best_delta == 0, 1, best_delta) #Make sure marched rays that don't detect any volume value don't stay at the very center
-	best_positions = (p * best_delta) + mu.reshape(-1,1)
+	best_delta = np.where(best_delta == 0, best_delta_avg, best_delta) #Make sure marched rays that don't detect any volume value don't stay at the very center
+	best_positions = (p * best_delta)# + mu.reshape(-1,1)
 
 	return best_positions
 

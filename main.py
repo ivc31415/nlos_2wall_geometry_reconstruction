@@ -16,7 +16,7 @@ import argparse
 #import pywavefront
 #from pywavefront import visualization
 
-#import tal
+import tal
 
 def log(message, file):
 	if f is None:
@@ -25,10 +25,11 @@ def log(message, file):
 		file.write(f"{message}\n")
 		file.flush()
 
-def plotModel(p, n, room_length, title='Reconstructed Model', showID=False):
+def plotModel(ps, n, room_length, title='Reconstructed Model', showID=False, colors=['b']):
 	fig = plt.figure(title)
 	ax = fig.add_subplot(projection='3d')
-	ax.scatter(p[0, :], p[1, :], p[2, :])
+	for p,c in zip(ps, colors):
+		ax.scatter(p[0, :], p[1, :], p[2, :], color=c)
 	ax.scatter(
 		[room_length, room_length, room_length, room_length, -room_length, -room_length, -room_length, -room_length], 
 		[room_length, room_length, -room_length, -room_length, room_length, room_length, -room_length, -room_length], 
@@ -76,6 +77,10 @@ def program(args, f=None):
 		p = si.initialise_stdev(p, V0, V1, args.roomsize)
 	else:
 		p = si.initialise_standard(p, V0, V1, args.roomsize)
+
+	tal.plot.volume(V0 + V1)
+	subsphere_ico.save_as_obj(p, args.subdivisions, 'output/TEMP2.obj')
+	plotModel([p], n, args.roomsize, colors=['b'])
 
 	# Obtain neighbours
 	neighbours = subsphere_ico.neighbours_matrix(p, args.subdivisions)
