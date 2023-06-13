@@ -72,8 +72,8 @@ def powerSphere(data, device, n, neighbours, V0, V1, Vn0, Vn1, args):
 	eValue = torch.sum(args.weightvolume0 * v0 + args.weightvolume1 * v1, dim=0)
 	eValue = eValue.item()
 
-	cos0 = (Vn0 @ n + 1) / 2
-	cos1 = (Vn1 @ n + 1) / 2
+	cos0 = (Vn0 @ n - 1) / 2
+	cos1 = (Vn1 @ n - 1) / 2
 
 	eNormal = torch.sum(args.weightvolume0 * torch.multiply(v0, cos0) + args.weightvolume1 * torch.multiply(v1, cos1))
 	eNormal = eNormal.item()
