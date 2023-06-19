@@ -1,4 +1,4 @@
-*Written for the state of the program in **7/6/2023***
+*Written for the state of the program in **19/6/2023***
 
 # How to run
 Run the script ``main.py``. It has the following required arguments:
@@ -26,7 +26,7 @@ There's also the optional arguments:
 |-|-|-|-|
 |``-i``|``--iterations``|Integer, Number of iterations of optimisation|``10``|
 |``-s``|``--subdivisions``|Integer, number of subdivisions done to the sphere, starting at 1|``1``|
-|``-r``|``--roomsize``|Size of the volumes where a unit-radius sphere will be placed for optimisation|``5 ``|
+|``-r``|``--roomsize``|Size of the volumes where a unit-radius sphere will be placed for optimisation. This size is half of the length of the room|``5``|
 |``-log``|``-log``|File path for a log of the program's execution|*None*|
 |``-wlod0``|``--weightlod0``|Weight given to the no blurry version of the volumes|``1``|
 |``-wlod1``|``--weightlod1``|Weight given to the least blurry version of the volumes|``0.5``|
@@ -44,3 +44,4 @@ There's also the optional arguments:
 |-|-|-|
 |``-cpu``|``--cpu``|Forces script to use the CPU instead of GPU|
 |``-fb``|``--filltobounds``|Reshapes sphere before optimisation to size of standard deviation|
+|``-rm``|``--raymarching``|Uses raymarching to initialise the starting sphere before any optimisation occurs|

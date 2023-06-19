@@ -78,9 +78,9 @@ def program(args, f=None):
 	else:
 		p = si.initialise_standard(p, V0, V1, args.roomsize)
 
-	tal.plot.volume(V0 + V1)
-	subsphere_ico.save_as_obj(p, args.subdivisions, 'output/TEMP2.obj')
-	plotModel([p], n, args.roomsize, colors=['b'])
+	#tal.plot.volume(V0 + V1)
+	#subsphere_ico.save_as_obj(p, args.subdivisions, 'output/TEMP2.obj')
+	#plotModel([p], n, args.roomsize, colors=['b'])
 
 	# Obtain neighbours
 	neighbours = subsphere_ico.neighbours_matrix(p, args.subdivisions)

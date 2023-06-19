@@ -13,7 +13,7 @@
     - [ ] Calculate normal depending on nearby vertices?
   - [X] Out-of-volume vertices?
   - [X] Standard deviation of edges sizes. Keep small?
-  - [ ] Make cosine of normal negative on perpendicular
+  - [X] Make cosine of normal negative on perpendicular
   - [ ] Compare bounding box of reconstruction with volume (thresehold) (?)
   - [ ] Do the neighbour things with triangles instead of edges?
   - [ ] Proximity: Weight based on inverse volume?
