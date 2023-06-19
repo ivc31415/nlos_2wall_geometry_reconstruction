@@ -79,11 +79,12 @@ def powerSphere(data, device, n, neighbours, V0, V1, Vn0, Vn1, args):
 	eNormal = eNormal.item()
 	#eNormal = np.sum(np.multiply(v0.cpu().numpy(), cos0) + np.multiply(v1.cpu().numpy(), cos1))
 
-	# Get distance of every point to every other point
-	dists = minDistanceBetweenPoints(x_torch)[0]
+	# Get distance² of every point to every other point
+	dists = torch.cdist(x_torch, x_torch, p=1.0)
+	dists_sorted = torch.sort(dists, dim=0)[0]
 
 	# Energy based on proximity to closest point
-	dists_closest = dists[1,:]
+	dists_closest = dists_sorted[1,:]
 	eProximity = -1 * torch.sum(1/(100 * dists_closest))
 	eProximity = eProximity.item()
 
@@ -94,7 +95,13 @@ def powerSphere(data, device, n, neighbours, V0, V1, Vn0, Vn1, args):
 	eNeighbours = torch.sum(neighbour_dist_stdev)
 	eNeighbours = eNeighbours.item()
 
-	return -(args.weightvalues * eValue + args.weightnormals * eNormal + args.weightproximity * eProximity + args.weightneighbours * eNeighbours)
+	# Energy based on std dev of all the edges of the reconstruction
+	n_edges = torch.sum(n_neighbours)
+	edges_mean = torch.sum(dists * neighbours) / n_edges
+	edges_stdev = torch.sum(neighbours * (dists - edges_mean)**2) / n_edges
+	eEdges = edges_stdev.item()
+
+	return -(args.weightvalues * eValue + args.weightnormals * eNormal + args.weightproximity * eProximity - args.weightneighbours * eNeighbours - args.weightedges * eEdges)
 
 def sampleVolume(V, x, room_length):
 	global samplingPosition

@@ -143,8 +143,9 @@ if __name__ == "__main__":
 	argp.add_argument('-wlod3', '--weightlod3', default=0.1, type=float)
 	argp.add_argument('-wv', '--weightvalues', default=1, type=float)
 	argp.add_argument('-wn', '--weightnormals', default=1, type=float)
-	argp.add_argument('-wp', '--weightproximity', default=1, type=float)
-	argp.add_argument('-wneigh', '--weightneighbours', default=1, type=float)
+	argp.add_argument('-wp', '--weightproximity', default=0, type=float)
+	argp.add_argument('-wneigh', '--weightneighbours', default=0, type=float)
+	argp.add_argument('-we', '--weightedges', default=0, type=float)
 	argp.add_argument('-sq', '--sequence', default=None, type=str)
 
 	argp.add_argument('-cpu', '--cpu', action='store_true')
