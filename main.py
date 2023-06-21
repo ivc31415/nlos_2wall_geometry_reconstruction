@@ -164,6 +164,7 @@ if __name__ == "__main__":
 	log(f"Iterations: {args.iterations}, Subdivisions: {args.subdivisions}", f)
 	log(f"Room radius: {args.roomsize}, Weight Normals: {args.weightnormals}, Weight Values: {args.weightvalues}", f)
 	log(f"Weight Proximity: {args.weightproximity}, Weight Neighbours: {args.weightneighbours}", f)
+	log(f"Weight Edges Similarity: {args.weightedges}", f)
 	log(f"Weight LODs: ({args.weightlod0}, {args.weightlod1}, {args.weightlod2}, {args.weightlod3})", f)
 
 	if args.filltobounds:

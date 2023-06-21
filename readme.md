@@ -34,8 +34,9 @@ There's also the optional arguments:
 |``-wlod3``|``--weightlod3``|Weight given to the high blurry version of the volumes|``0.1``|
 |``-wv``|``-weightvalues``|Weight given to the value factor on the energy function|``1``|
 |``-wn``|``--weightnormals``|Weight given to the normals factor on the energy function|``1``|
-|``-wp``|``--weightproximity``|Weight given to the proximity factor on the energy function|``1``|
-|``-wneigh``|``--weightneighbours``|Weight given to the neighbours factor on the energy function|``1``|
+|``-wp``|``--weightproximity``|Weight given to the proximity factor on the energy function|``0``|
+|``-we``|``--weightedges``|Weight given to the minimization of the standard deviation of the length of edges in the energy function|``0``|
+|``-wneigh``|``--weightneighbours``|Weight given to the neighbours factor on the energy function|``0``|
 |``-sq``|``--sequence``|Path where a sequence of ``obj`` files are saved for every iteration|*None*|
 
 ...and flags:
