@@ -1,0 +1,17 @@
+Volume 1: 'data/cube/0.0_rec.npy', Volume 2: 'data/cube/90.0_to_0.0_rec.npy'
+Normal 1: '-1 0 0', Normal 2: '0 0 1'
+Output: 'output/batch/proximity_cube/1/final.obj', Force CPU?: False, Fill to bounds?: False
+Iterations: 10, Subdivisions: 3
+Room radius: 4.0, Weight Normals: 0.25, Weight Values: 1.0
+Weight Proximity: 1.0, Weight Neighbours: 0.0
+Weight LODs: (4.0, 3.0, 2.0, 1.0)
+Saving sequence on directory 'output/batch/proximity_cube/1/sequence'
+---------------
+Time to load volumes: 0.36609935760498047s
+Center of Mass (SciPy): [-1.46660976 -0.01611929  0.22911572]
+Voxels Mu: [-1.31321568 -0.01610663  0.14293921]
+Voxels Sigma: [2.18369393 0.97052424 1.16734852]
+Using GPU
+Time for blurring: 27.265404224395752s
+Time for optimising: 47.33277606964111s
+Time for optimising (Average per iteration): 4.733277606964111s

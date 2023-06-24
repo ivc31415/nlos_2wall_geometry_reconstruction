@@ -1,0 +1,17 @@
+Volume 1: 'data/R/R_0.0_rec.npy', Volume 2: 'data/R/R_90.0_to_0.0_rec.npy'
+Normal 1: '-1 0 0', Normal 2: '0 0 1'
+Output: 'output/batch/R/roomsize/5/final.obj', Force CPU?: False, Fill to bounds?: False
+Iterations: 10, Subdivisions: 3
+Room radius: 5.0, Weight Normals: 1.0, Weight Values: 1.0
+Weight Proximity: 0.0, Weight Neighbours: 0.0
+Weight LODs: (4.0, 3.0, 2.0, 1.0)
+Saving sequence on directory 'output/batch/R/roomsize/5/sequence'
+---------------
+Time to load volumes: 0.39685821533203125s
+Center of Mass (SciPy): [-1.15716138 -0.11745736  0.12199444]
+Voxels Mu: [-1.14098027 -0.12455983  0.14732584]
+Voxels Sigma: [1.14356201 1.45133782 1.24600264]
+Using GPU
+Time for blurring: 30.248345851898193s
+Time for optimising: 38.38011050224304s
+Time for optimising (Average per iteration): 3.838011050224304s

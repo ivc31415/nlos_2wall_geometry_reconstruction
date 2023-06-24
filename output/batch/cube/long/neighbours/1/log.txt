@@ -1,0 +1,15 @@
+Volume 1: 'data/cube/0.0_rec.npy', Volume 2: 'data/cube/90.0_to_0.0_rec.npy'
+Normal 1: '-1 0 0', Normal 2: '0 0 1'
+Output: 'output/batch/cube/long/neighbours/1/final.obj', Force CPU?: False
+Iterations: 50, Subdivisions: 3
+Room radius: 4.0, Weight Normals: 1.0, Weight Values: 1.0
+Weight Proximity: 0.0, Weight Neighbours: 1.0
+Weight LODs: (4.0, 3.0, 2.0, 1.0)
+Initialisation: Center of Mass
+Saving sequence on directory 'output/batch/cube/long/neighbours/1/sequence'
+---------------
+Time to load volumes: 0.3593323230743408s
+Using GPU
+Time for blurring: 27.289809703826904s
+Time for optimising: 184.79191040992737s
+Time for optimising (Average per iteration): 3.6958382081985475s

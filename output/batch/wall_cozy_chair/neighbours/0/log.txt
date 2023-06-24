@@ -1,0 +1,17 @@
+Volume 1: 'data/wall_cozy_chair/wall_cozy_chair_0.0_rec.npy', Volume 2: 'data/wall_cozy_chair/wall_cozy_chair_90.0_to_0.0_rec.npy'
+Normal 1: '-1 0 0', Normal 2: '0 0 1'
+Output: 'output/batch/wall_cozy_chair/neighbours/0/final.obj', Force CPU?: False, Fill to bounds?: False
+Iterations: 10, Subdivisions: 3
+Room radius: 4.0, Weight Normals: 1.0, Weight Values: 1.0
+Weight Proximity: 0.0, Weight Neighbours: 0.0
+Weight LODs: (4.0, 3.0, 2.0, 1.0)
+Saving sequence on directory 'output/batch/wall_cozy_chair/neighbours/0/sequence'
+---------------
+Time to load volumes: 0.41560983657836914s
+Center of Mass (SciPy): [-2.38203992 -0.33526999 -0.63404142]
+Voxels Mu: [-2.44201878 -0.33265929 -0.52420016]
+Voxels Sigma: [1.11083536 1.0361614  1.14931684]
+Using GPU
+Time for blurring: 27.400131702423096s
+Time for optimising: 43.16124200820923s
+Time for optimising (Average per iteration): 4.316124200820923s

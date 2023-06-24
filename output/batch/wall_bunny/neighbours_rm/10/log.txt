@@ -1,0 +1,15 @@
+Volume 1: 'data/wall_bunny/wall_bunny_0.0_rec.npy', Volume 2: 'data/wall_bunny/wall_bunny_90.0_to_0.0_rec.npy'
+Normal 1: '-1 0 0', Normal 2: '0 0 1'
+Output: 'output/batch/wall_bunny/neighbours_rm/10/final.obj', Force CPU?: False
+Iterations: 10, Subdivisions: 3
+Room radius: 4.0, Weight Normals: 1.0, Weight Values: 1.0
+Weight Proximity: 0.0, Weight Neighbours: 10.0
+Weight LODs: (4.0, 3.0, 2.0, 1.0)
+Initialisation: Raymarching
+Saving sequence on directory 'output/batch/wall_bunny/neighbours_rm/10/sequence'
+---------------
+Time to load volumes: 0.4402015209197998s
+Using GPU
+Time for blurring: 28.648627996444702s
+Time for optimising: 818.1397385597229s
+Time for optimising (Average per iteration): 81.81397385597229s

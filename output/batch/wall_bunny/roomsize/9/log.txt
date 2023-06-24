@@ -1,0 +1,17 @@
+Volume 1: 'data/wall_bunny/wall_bunny_0.0_rec.npy', Volume 2: 'data/wall_bunny/wall_bunny_90.0_to_0.0_rec.npy'
+Normal 1: '-1 0 0', Normal 2: '0 0 1'
+Output: 'output/batch/wall_bunny/roomsize/9/final.obj', Force CPU?: False, Fill to bounds?: False
+Iterations: 10, Subdivisions: 3
+Room radius: 9.0, Weight Normals: 1.0, Weight Values: 1.0
+Weight Proximity: 0.0, Weight Neighbours: 0.0
+Weight LODs: (4.0, 3.0, 2.0, 1.0)
+Saving sequence on directory 'output/batch/wall_bunny/roomsize/9/sequence'
+---------------
+Time to load volumes: 0.4441413879394531s
+Center of Mass (SciPy): [ 0.01982071 -0.62890557  1.62682609]
+Voxels Mu: [ 0.07090308 -0.58985179  1.96378221]
+Voxels Sigma: [3.65237454 3.36186422 3.60787358]
+Using GPU
+Time for blurring: 27.25589346885681s
+Time for optimising: 41.53554844856262s
+Time for optimising (Average per iteration): 4.153554844856262s

@@ -1,0 +1,15 @@
+Volume 1: 'data/cube/0.0_rec.npy', Volume 2: 'data/cube/90.0_to_0.0_rec.npy'
+Normal 1: '-1 0 0', Normal 2: '0 0 1'
+Output: 'output/batch/cube/long/value_vs_normal/v0_n1/final.obj', Force CPU?: False
+Iterations: 50, Subdivisions: 3
+Room radius: 4.0, Weight Normals: 1.0, Weight Values: 0.0
+Weight Proximity: 0.0, Weight Neighbours: 0.0
+Weight LODs: (4.0, 3.0, 2.0, 1.0)
+Initialisation: Center of Mass
+Saving sequence on directory 'output/batch/cube/long/value_vs_normal/v0_n1/sequence'
+---------------
+Time to load volumes: 0.35584449768066406s
+Using GPU
+Time for blurring: 27.35221529006958s
+Time for optimising: 959.0068547725677s
+Time for optimising (Average per iteration): 19.180137095451354s

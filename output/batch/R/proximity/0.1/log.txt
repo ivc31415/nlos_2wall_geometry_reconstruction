@@ -1,0 +1,17 @@
+Volume 1: 'data/R/R_0.0_rec.npy', Volume 2: 'data/R/R_90.0_to_0.0_rec.npy'
+Normal 1: '-1 0 0', Normal 2: '0 0 1'
+Output: 'output/batch/R/proximity/0.1/final.obj', Force CPU?: False, Fill to bounds?: False
+Iterations: 10, Subdivisions: 3
+Room radius: 4.0, Weight Normals: 0.25, Weight Values: 1.0
+Weight Proximity: 0.1, Weight Neighbours: 0.0
+Weight LODs: (4.0, 3.0, 2.0, 1.0)
+Saving sequence on directory 'output/batch/R/proximity/0.1/sequence'
+---------------
+Time to load volumes: 0.3962736129760742s
+Center of Mass (SciPy): [-0.9257291  -0.09396588  0.09759555]
+Voxels Mu: [-0.91278422 -0.09964786  0.11786067]
+Voxels Sigma: [0.91484961 1.16107026 0.99680211]
+Using GPU
+Time for blurring: 27.235077381134033s
+Time for optimising: 41.63309669494629s
+Time for optimising (Average per iteration): 4.1633096694946286s

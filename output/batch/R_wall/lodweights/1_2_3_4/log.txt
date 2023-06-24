@@ -1,0 +1,15 @@
+Volume 1: 'data/R_wall/wall_R_0.0_rec.npy', Volume 2: 'data/R_wall/wall_R_90.0_to_0.0_rec.npy'
+Normal 1: '-1 0 0', Normal 2: '0 0 1'
+Output: 'output/batch/R_wall/lodweights/1_2_3_4/final.obj', Force CPU?: False, Fill to bounds?: False
+Iterations: 10, Subdivisions: 3
+Room radius: 4.0, Weight Normals: 1.0, Weight Values: 1.0
+Weight Proximity: 0.0, Weight Neighbours: 0.0
+Weight LODs: (1.0, 2.0, 3.0, 4.0)
+Saving sequence on directory 'output/batch/R_wall/lodweights/1_2_3_4/sequence'
+---------------
+Time to load volumes: 0.41912293434143066s
+Center of Mass (SciPy): [-2.70367245 -0.11867579 -0.23616909]
+Voxels Mu: [-2.72338865 -0.13974301 -0.28020452]
+Voxels Sigma: [1.46620894 1.40049363 1.27877022]
+Using GPU
+Time for blurring: 27.310791730880737s

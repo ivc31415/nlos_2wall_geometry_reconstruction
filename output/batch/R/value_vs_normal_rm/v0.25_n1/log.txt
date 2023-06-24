@@ -1,0 +1,15 @@
+Volume 1: 'data/R/R_0.0_rec.npy', Volume 2: 'data/R/R_90.0_to_0.0_rec.npy'
+Normal 1: '-1 0 0', Normal 2: '0 0 1'
+Output: 'output/batch/R/value_vs_normal_rm/v0.25_n1/final.obj', Force CPU?: False
+Iterations: 10, Subdivisions: 3
+Room radius: 4.0, Weight Normals: 1.0, Weight Values: 0.25
+Weight Proximity: 0.0, Weight Neighbours: 0.0
+Weight LODs: (4.0, 3.0, 2.0, 1.0)
+Initialisation: Raymarching
+Saving sequence on directory 'output/batch/R/value_vs_normal_rm/v0.25_n1/sequence'
+---------------
+Time to load volumes: 0.43673181533813477s
+Using GPU
+Time for blurring: 28.010255336761475s
+Time for optimising: 48.0102322101593s
+Time for optimising (Average per iteration): 4.80102322101593s

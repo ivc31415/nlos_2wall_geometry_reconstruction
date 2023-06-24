@@ -1,0 +1,15 @@
+Volume 1: 'data/R/R_0.0_rec.npy', Volume 2: 'data/R/R_90.0_to_0.0_rec.npy'
+Normal 1: '-1 0 0', Normal 2: '0 0 1'
+Output: 'output/batch/R/proximity_rm/2/final.obj', Force CPU?: False
+Iterations: 10, Subdivisions: 3
+Room radius: 4.0, Weight Normals: 0.25, Weight Values: 1.0
+Weight Proximity: 2.0, Weight Neighbours: 0.0
+Weight LODs: (4.0, 3.0, 2.0, 1.0)
+Initialisation: Raymarching
+Saving sequence on directory 'output/batch/R/proximity_rm/2/sequence'
+---------------
+Time to load volumes: 0.7669527530670166s
+Using GPU
+Time for blurring: 29.728119134902954s
+Time for optimising: 53.97889280319214s
+Time for optimising (Average per iteration): 5.397889280319214s
